@@ -1,6 +1,6 @@
-# 🚢 Trade Flow Brasil
+# Trade Flow Brasil
 
-## 📌 Overview
+## Overview
 
 Trade Flow Brasil is an end-to-end Data Engineering project that analyzes Brazil's import and export flows using official public trade data APIs.
 
@@ -10,7 +10,7 @@ The final dataset enables strategic analysis of Brazil’s trade balance, top ex
 
 ---
 
-## 🎯 Project Objectives
+## Project Objectives
 
 - Identify Brazil’s main export and import products
 - Build a scalable data pipeline using public API data
@@ -21,24 +21,24 @@ The final dataset enables strategic analysis of Brazil’s trade balance, top ex
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 The project follows a layered architecture model:
 
-### 🔹 RAW Layer (Landing Zone)
+### RAW Layer (Landing Zone)
 - Data extracted directly from public trade APIs
 - Stored without transformation
 - Historical data preserved
 - Stored in Google Cloud Storage
 
-### 🔹 BRONZE Layer (Standardized Data)
+### BRONZE Layer (Standardized Data)
 - Column standardization
 - Data type enforcement
 - Null handling
 - Deduplication
 - Basic normalization
 
-### 🔹 GOLD Layer (Analytics Ready)
+### GOLD Layer (Analytics Ready)
 - Dimensional modeling
 - Fact table: Trade transactions
 - Dimension tables:
@@ -51,7 +51,7 @@ The project follows a layered architecture model:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Python
 - Pandas
@@ -63,7 +63,7 @@ The project follows a layered architecture model:
 
 ---
 
-## 🔄 Data Pipeline Flow
+## Data Pipeline Flow
 
 1. Extract data from public trade API
 2. Store raw data in Cloud Storage (RAW)
@@ -74,7 +74,7 @@ The project follows a layered architecture model:
 
 ---
 
-## 🧪 Data Quality Rules
+## Data Quality Rules
 
 Examples of validations implemented:
 
@@ -88,7 +88,7 @@ All validation logs can be stored for monitoring and governance purposes.
 
 ---
 
-## 📊 Analytical Use Cases
+## Analytical Use Cases
 
 - Top 10 exported products by value
 - Top importing countries
@@ -98,7 +98,7 @@ All validation logs can be stored for monitoring and governance purposes.
 
 ---
 
-## 📈 Future Improvements
+## Future Improvements
 
 - Incremental loading strategy
 - Partitioned and clustered BigQuery tables
@@ -109,7 +109,7 @@ All validation logs can be stored for monitoring and governance purposes.
 
 ---
 
-## 🧠 Why This Project?
+## Why This Project?
 
 This project demonstrates:
 
@@ -122,7 +122,7 @@ This project demonstrates:
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 João Gabriel  
 Data & Analytics Enthusiast  
