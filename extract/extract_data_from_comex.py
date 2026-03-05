@@ -2,6 +2,7 @@ import requests
 import time
 import pandas as pd
 import logging
+from datetime import datetime
 
 # Configuração de logging
 logging.basicConfig(
@@ -36,11 +37,12 @@ def make_request_with_retry(url, headers, payload):
 
             if attempt == MAX_RETRIES - 1:
                 logging.critical("Máximo de tentativas atingido. Encerrando pipeline.")
-                raise
+                return None
 
-            wait_time = 2 ** attempt
+            wait_time = 2 ** attempt    
             time.sleep(wait_time)
-
+    
+    return None
 
 def extract_comex_data(headings, flow, metrics, period_from, period_to):
 
@@ -76,9 +78,13 @@ def extract_comex_data(headings, flow, metrics, period_from, period_to):
 
         data = make_request_with_retry(url, headers, payload)
 
+        if data is None:
+            logging.error(f"Resposta vazia da API para HS {heading}")
+            raise Exception("Falha na extração de dados da API!")
+
         if not data.get("success"):
             logging.error(f"API retornou sucesso=False para HS {heading}")
-            raise Exception("Resposta inválida da API")
+            continue
 
         records = data["data"]["list"]
 
@@ -93,6 +99,8 @@ def extract_comex_data(headings, flow, metrics, period_from, period_to):
         time.sleep(5)
 
     df = pd.DataFrame(all_data)
+    df["ingestion_timestamp"] = datetime.utcnow()
+    df["source"] = "comexstat_api"
 
     if df.empty:
         logging.critical("DataFrame vazio. Abortando pipeline.")

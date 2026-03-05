@@ -8,7 +8,6 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(message)s"
 )
 
-
 def run():
 
     bucket_name = "trade-flow-brasil-raw"
@@ -43,7 +42,6 @@ def run():
     except Exception as e:
         logging.critical(f"PIPELINE FALHOU: {e}")
         raise
-
 
 if __name__ == "__main__":
     run()
