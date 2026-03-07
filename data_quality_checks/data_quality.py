@@ -1,21 +1,9 @@
 import pandas as pd
 import logging
 
-def run_data_quality_checks(df):
+def run_data_quality_checks(df, expected_columns, numeric_columns):
 
     logging.info("Iniciando Data Quality Checks")
-
-    expected_columns = [
-        "country",
-        "heading",
-        "economicBlock",
-        "metricFOB",
-        "metricKG",
-        "flow",
-        "hs_code",
-        "ingestion_timestamp",
-        "source"
-    ]
 
     missing_cols = [col for col in expected_columns if col not in df.columns]
 
@@ -23,7 +11,7 @@ def run_data_quality_checks(df):
         logging.error(f"Colunas faltando: {missing_cols}")
         raise Exception("Schema inválido")
 
-    logging.info("Schema está validado!")
+    logging.info("Schema validado")
 
     critical_columns = ["flow", "hs_code"]
 
@@ -38,12 +26,10 @@ def run_data_quality_checks(df):
     if duplicates > 0:
         logging.warning(f"{duplicates} registros duplicados encontrados")
 
+    logging.info("Validação de tipos numéricos")
 
-    logging.info("Validação do tipo de dados...")
-
-    df["metricFOB"] = pd.to_numeric(df["metricFOB"], errors="coerce")
-    df["metricKG"] = pd.to_numeric(df["metricKG"], errors="coerce")
-
+    for col in numeric_columns:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
 
     logging.info("Data Quality finalizado")
 

@@ -4,14 +4,12 @@ import pandas as pd
 import logging
 from datetime import datetime
 
-# Configuração de logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s"
 )
 
 MAX_RETRIES = 5
-
 
 def make_request_with_retry(url, headers, payload):
 
@@ -72,7 +70,7 @@ def extract_comex_data(headings, flow, metrics, period_from, period_to):
                     "values": [heading]
                 }
             ],
-            "details": ["country", "heading", "economicBlock"],
+            "details": ["country", "heading", "economicBlock", "ncm"],
             "metrics": metrics
         }
 
