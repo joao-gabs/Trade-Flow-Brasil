@@ -1,129 +1,125 @@
 # Trade Flow Brasil
 
-## Overview
+## Visão Geral
 
-Trade Flow Brasil is an end-to-end Data Engineering project that analyzes Brazil's import and export flows using official public trade data APIs.
+Trade Flow Brasil é um projeto de **Engenharia de Dados end-to-end** que analisa os fluxos de importação e exportação do Brasil utilizando APIs públicas oficiais de dados de comércio exterior.
 
-The project applies modern data architecture principles, including layered data processing (RAW, BRONZE, GOLD), data quality validation, and cloud-based data warehousing using Google Cloud Platform (GCP).
+O projeto aplica princípios modernos de arquitetura de dados, incluindo **processamento em camadas (Raw, Trusted, Refined)**, validação de qualidade de dados e **data warehousing em nuvem utilizando Google Cloud Platform (GCP)**.
 
-The final dataset enables strategic analysis of Brazil’s trade balance, top exported/imported products, and international trade relationships.
-
----
-
-## Project Objectives
-
-- Identify Brazil’s main export and import products
-- Build a scalable data pipeline using public API data
-- Apply layered data architecture (Data Lake approach)
-- Implement data quality validations
-- Serve curated analytical datasets in a cloud data warehouse
-- Enable business-level insights from raw governmental data
+O conjunto de dados final permite análises estratégicas sobre a **balança comercial brasileira**, principais produtos exportados/importados e relações comerciais internacionais.
 
 ---
 
-## Architecture
+## Objetivos do Projeto
 
-The project follows a layered architecture model:
-
-### RAW Layer (Landing Zone)
-- Data extracted directly from public trade APIs
-- Stored without transformation
-- Historical data preserved
-- Stored in Google Cloud Storage
-
-### BRONZE Layer (Standardized Data)
-- Column standardization
-- Data type enforcement
-- Null handling
-- Deduplication
-- Basic normalization
-
-### GOLD Layer (Analytics Ready)
-- Dimensional modeling
-- Fact table: Trade transactions
-- Dimension tables:
-  - Product (NCM)
-  - Country
-  - Time
-  - Trade Type (Export / Import)
-
-- Stored in BigQuery
+- Identificar os principais produtos exportados e importados pelo Brasil  
+- Construir uma pipeline de dados escalável utilizando dados de APIs públicas  
+- Aplicar arquitetura de dados em camadas (modelo Data Lake)  
+- Implementar validações de qualidade de dados  
+- Disponibilizar datasets analíticos em um data warehouse em nuvem  
+- Permitir geração de insights de negócio a partir de dados governamentais brutos  
 
 ---
 
-## Tech Stack
+## Arquitetura
 
-- Python
-- Pandas
-- Google Cloud Storage
-- BigQuery
-- Cloud Functions / Cloud Composer (Airflow)
-- SQL
-- Data Quality Validation Scripts
+O projeto segue um modelo de **arquitetura em camadas**.
 
----
+### Camada Raw (Landing Zone)
 
-## Data Pipeline Flow
-
-1. Extract data from public trade API
-2. Store raw data in Cloud Storage (RAW)
-3. Transform and clean data (BRONZE)
-4. Apply data quality rules
-5. Load curated tables into BigQuery (GOLD)
-6. Enable analytical queries and dashboards
+- Dados extraídos diretamente de APIs públicas de comércio exterior  
+- Armazenados sem transformação  
+- Dados históricos preservados  
+- Armazenamento em **Google Cloud Storage**
 
 ---
 
-## Data Quality Rules
+### Camada Trusted (Dados Padronizados)
 
-Examples of validations implemented:
-
-- Negative trade values check
-- Invalid or null NCM codes
-- Missing country information
-- Duplicate records detection
-- Date consistency validation
-
-All validation logs can be stored for monitoring and governance purposes.
+- Padronização de nomes de colunas  
+- Garantia de tipos de dados  
+- Tratamento de valores nulos  
+- Remoção de duplicidades  
+- Normalização básica dos dados  
 
 ---
 
-## Analytical Use Cases
+### Camada Refined (Pronta para Análise)
 
-- Top 10 exported products by value
-- Top importing countries
-- Trade balance by month
-- Year-over-Year growth analysis
-- Sector performance over time
+- Carregamento das tabelas tratadas no **BigQuery**  
+- Criação de tabelas analíticas utilizando **SQL**
 
 ---
 
-## Future Improvements
+## Stack Tecnológica
 
-- Incremental loading strategy
-- Partitioned and clustered BigQuery tables
-- Automated orchestration with Airflow
-- Dashboard integration (Looker Studio / Power BI)
-- Data observability layer
-- Unit testing for data pipeline
-
----
-
-## Why This Project?
-
-This project demonstrates:
-
-- Data Engineering best practices
-- Cloud architecture implementation
-- Data governance and quality controls
-- Dimensional modeling
-- API data ingestion
-- Business-oriented data transformation
+- Python  
+- Pandas  
+- Google Cloud Storage  
+- BigQuery  
+- SQL  
+- Scripts de validação de qualidade de dados  
 
 ---
 
-## Author
+## Fluxo da Pipeline de Dados
 
-João Gabriel  
+1. Extração de dados da API pública de comércio exterior  
+2. Armazenamento dos dados brutos no **Cloud Storage (RAW)**  
+3. Transformação e limpeza dos dados (**Trusted**)  
+4. Aplicação de regras de qualidade de dados  
+5. Carregamento das tabelas tratadas no **BigQuery (Refined)**  
+6. Disponibilização para consultas analíticas e dashboards  
+
+---
+
+## Regras de Qualidade de Dados
+
+Exemplos de validações implementadas:
+
+- Verificação de valores negativos de comércio  
+- Códigos NCM inválidos ou nulos  
+- Informações de país ausentes  
+- Detecção de registros duplicados  
+- Validação de consistência temporal  
+
+Todos os logs de validação podem ser armazenados para **monitoramento e governança de dados**.
+
+---
+
+## Casos de Uso Analíticos
+
+- Top 10 produtos exportados por valor  
+- Principais países importadores  
+- Análise de crescimento ano contra ano (YoY)  
+- Desempenho de setores ao longo do tempo  
+
+---
+
+## Melhorias Futuras
+
+- Estratégia de carregamento incremental  
+- Tabelas particionadas e clusterizadas no BigQuery  
+- Orquestração automática com **Airflow**  
+- Integração com ferramentas de visualização (**Looker Studio / Power BI**)  
+
+---
+
+## Por que este projeto?
+
+Este projeto demonstra:
+
+- Boas práticas de Engenharia de Dados  
+- Implementação de arquitetura em nuvem  
+- Governança e controle de qualidade de dados  
+- Modelagem de dados  
+- Ingestão de dados via API  
+- Transformação de dados orientada a negócio  
+
+---
+
+## Autor
+
+**João Gabriel**  
 Data & Analytics Enthusiast  
-Focused on Data Engineering, Cloud Architecture and Strategic Analytics
+Focado em **Data Engineering, Arquitetura em Cloud e Analytics Estratégico**
