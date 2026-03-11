@@ -5,6 +5,7 @@ from load.load_raw_data_to_gcs import get_latest_blob, read_from_gcs
 from data_quality_checks.data_quality import run_data_quality_checks
 from transform.transform_comex_data import transform_data
 from load.load_curated_data_to_bq import load_to_bigquery
+from load.load_refined_data_to_bq import queries_to_bq_tables
 
 BUCKET_NAME = "trade-flow-brasil-raw"
 TABLE_ID_EXPORTS = "pipeline-trade-flow-brazil.trade_flow_brasil_curated.exports"
@@ -55,7 +56,7 @@ def run():
             headings=["2601", "1201", "1701", "0207", "4703"],
             flow="export",
             metrics=["metricFOB", "metricKG"],
-            period_from="2025-01",
+            period_from="2015-01",
             period_to="2025-12"
         )
 
@@ -65,7 +66,7 @@ def run():
             headings=["8517", "3004", "3808", "3104"],
             flow="import",
             metrics=["metricFOB", "metricKG", "metricCIF"],
-            period_from="2025-01",
+            period_from="2015-01",
             period_to="2025-12"
         )
 
@@ -115,8 +116,13 @@ def run():
             df_transformed_imports,
             TABLE_ID_IMPORTS
         )   
+        
+        logging.info("Camada refined está em andamento...")
+        queries_to_bq_tables("sql/refined/dim_country.sql")
+        queries_to_bq_tables("sql/refined/dim_product.sql")
+        queries_to_bq_tables("sql/refined/fact_trade_flow.sql")
 
-        logging.info("=== PIPELINE FINALIZADO COM SUCESSO ===")
+        logging.info("=== PIPELINE FINALIZADO COM SUCESSO!")
 
     except Exception as e:
         logging.critical(f"PIPELINE FALHOU: {e}")
