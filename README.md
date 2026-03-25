@@ -14,7 +14,7 @@ O conjunto de dados final permite análises estratégicas sobre a **balança com
 
 - Identificar os principais produtos exportados e importados pelo Brasil  
 - Construir uma pipeline de dados escalável utilizando dados de APIs públicas  
-- Aplicar arquitetura de dados em camadas (modelo Data Lake)  
+- Aplicar arquitetura de dados em camadas
 - Implementar validações de qualidade de dados  
 - Disponibilizar datasets analíticos em um data warehouse em nuvem  
 - Permitir geração de insights de negócio a partir de dados governamentais brutos  
@@ -25,9 +25,9 @@ O conjunto de dados final permite análises estratégicas sobre a **balança com
 
 O projeto segue um modelo de **arquitetura em camadas**.
 
-### Camada Raw (Landing Zone)
+### Camada Raw
 
-- Dados extraídos diretamente de APIs públicas de comércio exterior  
+- Dados extraídos diretamente da API do ComexStat  
 - Armazenados sem transformação  
 - Dados históricos preservados  
 - Armazenamento em **Google Cloud Storage**
@@ -40,7 +40,7 @@ O projeto segue um modelo de **arquitetura em camadas**.
 - Garantia de tipos de dados  
 - Tratamento de valores nulos  
 - Remoção de duplicidades  
-- Normalização básica dos dados  
+- Normalização dos dados  
 
 ---
 
@@ -121,5 +121,4 @@ Este projeto demonstra:
 ## Autor
 
 **João Gabriel**  
-Data & Analytics Enthusiast  
-Focado em **Data Engineering, Arquitetura em Cloud e Analytics Estratégico**
+Data Engineer & Analytics Enthusiast  
